@@ -32,14 +32,15 @@ var fight = function(enemyName) {
         if (confirmSkip) {
             window.alert(playerName + "has decided to skip this fight. Goodbye!");
         //sub money from playerMoney for skipping
-            playerMoney= playerMoney -10;
+            playerMoney= Math.max(0, playerMoney - 10);
             console.log("playerMoney" ,playerMoney);
             break;
     }
 }
     // if (promptFight ==="fight" ||promptFight === "FIGHT") {
     // //remove enemy's health by subtracting the amount set in the playerAttack var 
-enemyHealth = enemyHealth - playerAttack;
+    var damgage = randomNumber(playerAttack -3, playerAttack);
+enemyHealth = Math.max(0,enemyHealth - damgage);
 console.log(
     playerName + 'attacked' + enemyName + '.' + 'now has' + enemyHealth + 'health remaining.');
 //Check  enemy;s health
@@ -52,7 +53,8 @@ console.log(
     window.alert(enemyName + 'still has' + enemyHealth + 'health left.');
 }
 // remove player's health by sub the amount set in enemyAttack var
-playerHealth = playerHealth - enemyAttack;
+var damgage = randomNumber(enemyAttack - 3, enemyAttack);
+playerHealth = Math.max(0, playerHealth - damgage);
 console.log(
     enemyName + 'attacked' + playerName + '.' + playerName + 'now has' + playerHealth + 'health remaining.'
 );
@@ -77,7 +79,7 @@ for(var i=0; i< enemyNames.length; i++ ){
         window.alert('Welcome to Robot Gladiators ! Round ' + ( i + 1 ) );
     var pickedEnemyName = enemyNames[i];
     // reset enemyHealth b4 starting new fight
-    enemyHealth=50;
+    enemyHealth = randomNumber(40, 60);
     // use debugger to pause script 
     // debugger;
     fight(pickedEnemyName);
@@ -156,5 +158,11 @@ var shop = function(){
                 shop();
                 break;
         }
+};
+// function to generate a random numeric value
+var randomNumber = function( min , max) {
+    var value = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return value;
 };
 startGame();
