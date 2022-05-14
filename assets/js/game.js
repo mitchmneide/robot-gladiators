@@ -42,7 +42,7 @@ var fight = function(enemy) {
     var damgage = randomNumber(playerInfo.attack -3, playerInfo.attack);
     enemy.health = Math.max(0,enemy.health - damgage);
     console.log(
-    playerInfo.name + 'attacked' + enemy.name + '.' + 'now has' + enemy.health + 'health remaining.');
+    playerInfo.name + ' attacked ' + enemy.name + ' . ' + ' now has ' + enemy.health + 'health remaining.');
 //Check  enemy;s health
     if (enemy.health <= 0) {
         window.alert(enemy.name + "has died");
@@ -50,21 +50,21 @@ var fight = function(enemy) {
         playerInfo.money = playerInfo.money +20;
         break;
 } else {
-    window.alert(enemy.name + 'still has' + enemy.health + 'health left.');
+    window.alert(enemy.name + ' still has ' + enemy.health + 'health left.');
 }
     }else {
 // remove player's health by sub the amount set in enemy.attack var
 var damgage = randomNumber(enemy.attack - 3, enemy.attack);
 playerInfo.health = Math.max(0, playerInfo.health - damgage);
 console.log(
-    enemy.name + 'attacked' + playerInfo.name + '.' + playerInfo.name + 'now has' + playerInfo.health + 'health remaining.'
+    enemy.name + ' attacked ' + playerInfo.name + ' . ' + playerInfo.name + 'now has' + playerInfo.health + 'health remaining.'
 );
 //check player's health 
 if (playerInfo.health <= 0 ){
     window.alert(playerInfo.name + 'has died');
     break;
 } else {
-    window.alert(playerInfo.name + 'still has' + playerInfo.health + 'health left.');
+    window.alert(playerInfo.name + ' still has ' + playerInfo.health + 'health left.');
 }
     }
     isPlayerTurn =!isPlayerTurn;
