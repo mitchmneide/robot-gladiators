@@ -28,15 +28,20 @@ if (promptFight === "skip") {
 return false;
 };
 var fight = function(enemy) {
+    var isPlayerTurn = true; 
+    if (Math.random() > 0.5 ) {
+        isPlayerTurn = false;
+    }
     while(playerInfo.health > 0 && enemy.health > 0){
         //place fifght function 
-    if (fightOrSkip()) {
+    if (isPlayerTurn) {
+        if (fightOrSkip ()) {
         break;
     } 
     //replace code with this function
     var damgage = randomNumber(playerInfo.attack -3, playerInfo.attack);
-enemy.health = Math.max(0,enemy.health - damgage);
-console.log(
+    enemy.health = Math.max(0,enemy.health - damgage);
+    console.log(
     playerInfo.name + 'attacked' + enemy.name + '.' + 'now has' + enemy.health + 'health remaining.');
 //Check  enemy;s health
     if (enemy.health <= 0) {
@@ -47,6 +52,7 @@ console.log(
 } else {
     window.alert(enemy.name + 'still has' + enemy.health + 'health left.');
 }
+    }else {
 // remove player's health by sub the amount set in enemy.attack var
 var damgage = randomNumber(enemy.attack - 3, enemy.attack);
 playerInfo.health = Math.max(0, playerInfo.health - damgage);
@@ -60,6 +66,8 @@ if (playerInfo.health <= 0 ){
 } else {
     window.alert(playerInfo.name + 'still has' + playerInfo.health + 'health left.');
 }
+    }
+    isPlayerTurn =!isPlayerTurn;
     }
 };
 // function to start a new game 
