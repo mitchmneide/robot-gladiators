@@ -4,27 +4,36 @@ var randomNumber = function( min , max) {
 
     return value;
 };
-
+var fightOrSkip = function (){ 
+        
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT or 'SKIP' to choose.")
+// if player choses to skip confirm and then stop the loop
+if(promptFight === "" || promptFight === null ){
+    window.alert("You need to provide a valid answer! Pleae try again");
+    return fightOrSkip();
+}    
+promptFight= promptFight.toLowerCase();
+if (promptFight === "skip") {
+//confirm player wants to skip
+        var confirmSkip =window.confirm("Are you sure you'd like to quit?");
+//if yes(treu), leave fight
+    if (confirmSkip) {
+        window.alert(playerInfo.name + "has decided to skip this fight. Goodbye!");
+    //sub money from playerInfo.money for skipping
+        playerInfo.money= Math.max(0, playerInfo.money - 10);
+        // return true if player wants to leave
+        return true; 
+}
+}
+return false;
+};
 var fight = function(enemy) {
     while(playerInfo.health > 0 && enemy.health > 0){
         //place fifght function 
-    
-        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT or 'SKIP' to choose.")
-    // if player choses to skip confirm and then stop the loop
-        if (promptFight === "skip" || promptFight ==="SKIP") {
-    //confirm player wants to skip
-            var confirmSkip =window.confirm("Are you sure you'd like to quit?");
-    //if yes(treu), leave fight
-        if (confirmSkip) {
-            window.alert(playerInfo.name + "has decided to skip this fight. Goodbye!");
-        //sub money from playerInfo.money for skipping
-            playerInfo.money= Math.max(0, playerInfo.money - 10);
-            console.log("playerInfo.money" ,playerInfo.money);
-            break;
-    }
-}
-    // if (promptFight ==="fight" ||promptFight === "FIGHT") {
-    // //remove enemy's health by subtracting the amount set in the playerInfo.attack var 
+    if (fightOrSkip()) {
+        break;
+    } 
+    //replace code with this function
     var damgage = randomNumber(playerInfo.attack -3, playerInfo.attack);
 enemy.health = Math.max(0,enemy.health - damgage);
 console.log(
@@ -58,6 +67,8 @@ var startGame = function() {
     // reset player stats
     playerInfo.reset();
 for(var i=0; i< enemyInfo.length; i++ ){
+    // check player stats
+    console.log(playerInfo);
     if (playerInfo.health > 0) {
         // let player know what round they are in 
         window.alert('Welcome to Robot Gladiators ! Round ' + ( i + 1 ) );
@@ -136,6 +147,7 @@ var getPlayerName = function() {
         name = prompt ("What is your robot's name?");
     }
     console.log("Your robot's name is" + name);
+    return name;
 };
 var playerInfo = {
     name: getPlayerName (),
